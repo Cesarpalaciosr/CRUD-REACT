@@ -6,10 +6,7 @@ const pool = new Pool({
     password: 'masterkey',
     port: 5432,
 })
-pool.query('SELECT NOW()', (err, res) => {
-    console.log(err, res)
-    pool.end()
-})
+
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
@@ -17,8 +14,16 @@ const client = new Client({
     password: 'masterkey',
     port: 5432,
 })
-client.connect()
-client.query('SELECT NOW()', (err, res) => {
-    console.log(err, res)
-    client.end()
-})
+
+function instance() {
+    const pool = new Pool({
+        user: 'postgres',
+        host: 'localhost',
+        database: 'CRUD-REACT',
+        password: 'masterkey',
+        port: 5432,
+    })
+    return pool;
+}
+
+export default pool;
