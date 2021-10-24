@@ -12,10 +12,14 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', (req, res) => {
-    res.status(200).send('Hello World!');
+  merchant_model.getMerchants()
+  .then(response => {
+    res.status(200).send(response);
   })
-
-
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
 
 app.post('/persona', (req, res) => {
     merchant_model.createMerchant(req.body)
@@ -36,6 +40,7 @@ app.post('/persona', (req, res) => {
       res.status(500).send(error);
     })
   })
+
   app.listen(port, () => {
     console.log(`App running on port ${port}.`)
   })

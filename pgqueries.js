@@ -21,7 +21,7 @@ const createMerchant = (body) => {
 
 const getMerchants = () => {
     return new Promise(function(resolve, reject) {
-      pool.query('SELECT * FROM merchants ORDER BY id_persona ASC', (error, results) => {
+      pool.query('SELECT * FROM persona ORDER BY id_persona ASC', (error, results) => {
         if (error) {
             reject(error)
         }

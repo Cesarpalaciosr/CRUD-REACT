@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect}from 'react'
 import './App.css';
 import { CrudTable } from './components/CrudTable';
 
@@ -38,7 +38,6 @@ class FlavorForm extends React.Component {
     let last_name = this.state.last_name;
     let id = this.state.id;
     let gender = this.state.gender;
-    console.log(names);
 
     fetch('http://localhost:3001/persona', {
       method: 'POST',
@@ -51,7 +50,7 @@ class FlavorForm extends React.Component {
         return response.text();
       })
       .then(data => {
-        alert(data);
+        //alert(data);
       });
   }
 
@@ -89,8 +88,9 @@ class FlavorForm extends React.Component {
 
 function App() {
   return (
-      <div>This is my component: <FlavorForm></FlavorForm>
-       
+      <div>
+      This is my component: <FlavorForm/>
+        <CrudTable/>
       </div>
       
   );
