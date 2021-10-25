@@ -2,22 +2,7 @@ import React, {useEffect, setTotalReactPackages, useState}from 'react'
 import { CrudTableRow } from './CrudTableRow'
 
 
-export const CrudTable = () => {
-    const [merchant, setMerchants] = useState(false);
-    var rows = useEffect(() => {
-        // GET request using fetch inside useEffect React hook
-        fetch('http://localhost:3001')
-            .then(console.log("conecte"))
-            .then(response => {
-                return response.text();
-            })
-            
-            .then(data => {
-                setMerchants(data);
-            })
-    
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);
+export const CrudTable = ({merchants}) => {
     
     return (
         <div>
@@ -33,10 +18,15 @@ export const CrudTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        {rows}
-                        <div>{merchant}</div>
-                    </tr>
+                        {merchants.map((el) => (<CrudTableRow key = {el.id_persona} el = {el}/>))}
+                        
+                    
+                                            {/*merchants.length <0 ? (
+                            <tr>
+                                <td colSpan="3">Sin datos</td>
+                            </tr>
+                        )
+                        : (merchants.map((el) => (<CrudTableRow key = {el.name} el = {el}/>)))*/}
                 </tbody>
                 <tfoot>
                     <tr>

@@ -1,12 +1,6 @@
-import React, {useEffect}from 'react'
+import React, {Component, useEffect, useState}from 'react'
 import './App.css';
 import { CrudTable } from './components/CrudTable';
-
-const pb = {
-  id: 1,
-    name: "Seiya",
-    constellation: "Pegaso",
-}
 class FlavorForm extends React.Component {
     constructor(props) {
       super(props);
@@ -15,12 +9,34 @@ class FlavorForm extends React.Component {
         last_name:'',
         id: '',
         gender:'',
+        merchants:[],
       };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount(){/*
+    var merchants = [];
+  var setMerchants = [];
+  [merchants, setMerchants] = useState(false);*/
+    fetch('http://localhost:3001')
+            .then(console.log("conecte"))
+            .then(response => {
+              return response.json();
+            })
+            .catch(error => {
+              console.log(error)
+            })
+            
+            .then(data => {
+              console.log(data)
+              this.setState({merchants: data})
+              /*setMerchants(data);
+              console.log(data);
+                */
+            })
+  }
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -56,6 +72,7 @@ class FlavorForm extends React.Component {
 
     render() {
       return (
+        <div>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
@@ -82,15 +99,41 @@ class FlavorForm extends React.Component {
           <input type="submit" value="Submit" />
           </label>
         </form>
-      );
+
+        <CrudTable merchants = {this.state.merchants}></CrudTable>
+      </div>);
     }
   }
+function App() {/*
+  var merchants = [];
+  var setMerchants = [];
+  [merchants, setMerchants] = useState(false);
+  
+  /*state = {
+    merchants:[]
+  }*//*
+    let rows = useEffect(() => {
+        // GET request using fetch inside useEffect React hook
+        fetch('http://localhost:3001')
+            .then(console.log("conecte"))
+            .then(response => {
+                return response.json();
+            })
 
-function App() {
+            .then(data => {
+                setMerchants(data);
+                console.log(data);
+                
+            })
+            
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);*/
   return (
       <div>
       This is my component: <FlavorForm/>
-        <CrudTable/>
+
+        <div>
+        </div>
       </div>
       
   );
