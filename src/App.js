@@ -2,7 +2,6 @@ import React from 'react'
 import './App.css';
 import { CrudTable } from './components/CrudTable';
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import PerfectScrollbar from 'react-perfect-scrollbar'
 class FlavorForm extends React.Component {
     constructor(props) {
       super(props);
@@ -65,58 +64,60 @@ class FlavorForm extends React.Component {
         return response.text();
       })
       .then(data => {
-        //alert(data);
+        alert(data);
       });
   }
 
     render() {
       return (
         <div>
-        <header>
-          <img className="header_img" src="https://pngimg.com/uploads/pokemon/pokemon_PNG148.png" alt="imagen de pikachu"/>
-        </header>
-        <section className="content">
-
-          <div className= "container">
-          <div className = "brand-tittle">form</div>
-            <form onSubmit={this.handleSubmit}>
-              <div className = "inputs">
-                <label>
-                  Name:
-                  <input name="names" type="text" value={this.state.value} onChange={this.handleInputChange}/>
-                </label>
-                <label>
-                  Last name:
-                  <input name = "last_name" type="text" value={this.state.value} onChange={this.handleInputChange}/>
-                </label>
-                <label>
-                  identification:
-                  <input name="id" type="number" value={this.state.value} onChange={this.handleInputChange} />
-                </label>
-                <label>
-                  Sex:
-                  <select className="custom-select" name= "gender" value={this.state.value} onChange={this.handleInputChange} >
-                    <option value="-">-</option>
-                    <option value="Hombre">Hombre</option>
-                    <option value="Mujer">Mujer</option>
-                  </select>
-                </label>
-                <input className="input-Submit" type="submit" value="Submit" />
-              </div>
-            </form>
-        </div>
-        </section>
-        <CrudTable person = {this.state.person}></CrudTable>
-      <footer>
-          Soy el footer
-      </footer>
+          <header className="headerx">
+            <img className="header_img" src="https://pngimg.com/uploads/pokemon/pokemon_PNG148.png" alt="imagen de pikachu"/>
+            <div className="header_text">
+            <p>Ingreso de personas</p>
+            </div>
+          </header>
+          <section className="content">
+            <div className= "container">
+              <div className = "brand-tittle">form</div>
+              <form onSubmit={this.handleSubmit}>
+                <div className = "inputs">
+                  <label>
+                    Name:
+                    <input name="names" type="text" value={this.state.value} onChange={this.handleInputChange}/>
+                  </label>
+                  <label>
+                    Last name:
+                    <input name = "last_name" type="text" value={this.state.value} onChange={this.handleInputChange}/>
+                  </label>
+                  <label>
+                    identification:
+                    <input name="id" type="number" value={this.state.value} onChange={this.handleInputChange} />
+                  </label>
+                  <label>
+                    Sex:
+                    <select className="custom-select" name= "gender" value={this.state.value} onChange={this.handleInputChange} >
+                      <option value="-">-</option>
+                      <option value="Hombre">Hombre</option>
+                      <option value="Mujer">Mujer</option>
+                    </select>
+                  </label>
+                  <input className="input-Submit" type="submit" value="Submit" />
+                </div>
+              </form>
+            </div>
+          </section>
+          <CrudTable person = {this.state.person}></CrudTable>
+        <footer>
+            Soy el footer
+        </footer>
       </div>
       );
     }
   }
 function App() {
   return (
-        <FlavorForm/>
+      <FlavorForm/>
   );
 }
 
