@@ -1,26 +1,27 @@
-import React, {Component, useEffect, useState}from 'react'
+import React from 'react'
 import './App.css';
 import { CrudTable } from './components/CrudTable';
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 class FlavorForm extends React.Component {
     constructor(props) {
       super(props);
+
       this.state = {
         names:'',
         last_name:'',
         id: '',
         gender:'',
-        merchants:[],
+        person:[],
       };
-
+    
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount(){/*
-    var merchants = [];
-  var setMerchants = [];
-  [merchants, setMerchants] = useState(false);*/
-    fetch('http://localhost:3001')
+  componentDidMount(){
+
+      fetch('http://localhost:3001')
             .then(console.log("conecte"))
             .then(response => {
               return response.json();
@@ -31,12 +32,10 @@ class FlavorForm extends React.Component {
             
             .then(data => {
               console.log(data)
-              this.setState({merchants: data})
-              /*setMerchants(data);
-              console.log(data);
-                */
+              this.setState({person: data})
             })
   }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -47,7 +46,7 @@ class FlavorForm extends React.Component {
       [name]: value
     });
   }
- 
+
   handleSubmit(event) {
     event.preventDefault();
     let names = this.state.names;
@@ -73,69 +72,51 @@ class FlavorForm extends React.Component {
     render() {
       return (
         <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input name="names"
-              type="text" value={this.state.value} onChange={this.handleInputChange}/>
-          </label>
-          <label>
-            Last name:
-            <input name = "last_name"
-              type="text" value={this.state.value} onChange={this.handleInputChange}/>
-          </label>
-          <label>
-            identification:
-            <input name="id"
-            type="number" value={this.state.value} onChange={this.handleInputChange} />
-            <label>
-            Sexo:
-            <select name= "gender" value={this.state.value} onChange={this.handleInputChange} >
-              <option value="-">-</option>
-              <option value="Hombre">Hombre</option>
-              <option value="Mujer">Mujer</option>
-            </select>
-          </label>
-          <input type="submit" value="Submit" />
-          </label>
-        </form>
+        <header>
+          <img className="header_img" src="https://pngimg.com/uploads/pokemon/pokemon_PNG148.png" alt="imagen de pikachu"/>
+        </header>
+        <section className="content">
 
-        <CrudTable merchants = {this.state.merchants}></CrudTable>
-      </div>);
+          <div className= "container">
+          <div className = "brand-tittle">form</div>
+            <form onSubmit={this.handleSubmit}>
+              <div className = "inputs">
+                <label>
+                  Name:
+                  <input name="names" type="text" value={this.state.value} onChange={this.handleInputChange}/>
+                </label>
+                <label>
+                  Last name:
+                  <input name = "last_name" type="text" value={this.state.value} onChange={this.handleInputChange}/>
+                </label>
+                <label>
+                  identification:
+                  <input name="id" type="number" value={this.state.value} onChange={this.handleInputChange} />
+                </label>
+                <label>
+                  Sex:
+                  <select className="custom-select" name= "gender" value={this.state.value} onChange={this.handleInputChange} >
+                    <option value="-">-</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                  </select>
+                </label>
+                <input className="input-Submit" type="submit" value="Submit" />
+              </div>
+            </form>
+        </div>
+        </section>
+        <CrudTable person = {this.state.person}></CrudTable>
+      <footer>
+          Soy el footer
+      </footer>
+      </div>
+      );
     }
   }
-function App() {/*
-  var merchants = [];
-  var setMerchants = [];
-  [merchants, setMerchants] = useState(false);
-  
-  /*state = {
-    merchants:[]
-  }*//*
-    let rows = useEffect(() => {
-        // GET request using fetch inside useEffect React hook
-        fetch('http://localhost:3001')
-            .then(console.log("conecte"))
-            .then(response => {
-                return response.json();
-            })
-
-            .then(data => {
-                setMerchants(data);
-                console.log(data);
-                
-            })
-            
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);*/
+function App() {
   return (
-      <div>
-      This is my component: <FlavorForm/>
-
-        <div>
-        </div>
-      </div>
-      
+        <FlavorForm/>
   );
 }
 

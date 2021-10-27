@@ -7,19 +7,19 @@ const pool = new Pool({
   port: 5432,
 });
 
-const createMerchant = (body) => {
+const createPerson = (body) => {
     return new Promise(function(resolve, reject) {
       const { names, last_name, id, gender } = body
       pool.query('INSERT INTO persona (no_persona, ap_persona, ci_persona, sx_persona ) VALUES ($1, $2, $3,$4)', [names, last_name, id, gender], (error, results) => {
         if (error) {
           reject(error)
         }
-        resolve(`A new merchant has been added added: ${results.rows[0]}`)
+        resolve(`A new person has been added added: ${results.rows[0]}`)
       })
     })
   }
 
-const getMerchants = () => {
+const getPerson = () => {
     return new Promise(function(resolve, reject) {
       pool.query('SELECT * FROM persona ORDER BY id_persona ASC', (error, results) => {
         if (error) {
@@ -32,20 +32,23 @@ const getMerchants = () => {
 
 
 
-const deleteMerchant = () => {
+const deletePerson = () => {
     return new Promise(function(resolve, reject) {
+      //const id_persona  = body
       const id = parseInt(request.params.id)
-      pool.query('DELETE FROM merchants WHERE id = $1', [id], (error, results) => {
+      //const id = parseInt(request.params.id_persona)
+      console.log(id)
+      pool.query('DELETE FROM persona WHERE id_persona = $1', [id], (error, results) => {
         if (error) {
           reject(error)
         }
-        resolve(`Merchant deleted with ID: ${id}`)
+        resolve(`Person deleted with ID: ${id}`)
       })
     })
 }
 
 module.exports = {
-    getMerchants,
-    createMerchant,
-    deleteMerchant,
+    getPerson,
+    createPerson,
+    deletePerson,
   }

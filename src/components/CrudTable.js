@@ -1,13 +1,35 @@
-import React, {useEffect, setTotalReactPackages, useState}from 'react'
+import React from 'react'
+import ScrollBar from 'react-perfect-scrollbar';
 import { CrudTableRow } from './CrudTableRow'
 
 
-export const CrudTable = ({merchants}) => {
+export const CrudTable = ({person}) => {
     
+    function del(){
+        let id_persona = prompt('Enter person id');
+        fetch(`http://localhost:3001/persona/${id_persona}`, {
+            method: 'DELETE',
+            headers:{
+            'Content-Type':'application/json'
+            },
+          body: JSON.stringify({id_persona}),
+          })
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+            alert(data);
+          });
+    }
+    
+    function upd(){
+
+    }
+
     return (
-        <div>
-            <h3>Tabla de datos</h3>
-            <table>
+        <div className = "table-wrapper">
+            <h2>Tabla de datos</h2>
+            <table className = "fl-table">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -18,21 +40,12 @@ export const CrudTable = ({merchants}) => {
                     </tr>
                 </thead>
                 <tbody>
-                        {merchants.map((el) => (<CrudTableRow key = {el.id_persona} el = {el}/>))}
-                        
-                    
-                                            {/*merchants.length <0 ? (
-                            <tr>
-                                <td colSpan="3">Sin datos</td>
-                            </tr>
-                        )
-                        : (merchants.map((el) => (<CrudTableRow key = {el.name} el = {el}/>)))*/}
+                        {person.map((el) => (<CrudTableRow key = {el.id_persona} el = {el}/>))}
                 </tbody>
                 <tfoot>
                     <tr>
-                    <th> 
-                        aqui va algo
-                    </th>
+                        <td><button onClick = {del}>Eliminar</button></td>
+                        <td><button onClick = {upd}>Actualizar</button></td>
                     </tr>
                 </tfoot>
             </table>
