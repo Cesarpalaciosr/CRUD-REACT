@@ -36,6 +36,7 @@ app.post('/persona', (req, res) => {
     .then(response => {
       res.status(200).send(response);
     })
+    .then(console.log(req.params.id_persona))
     .catch(error => {
       //console.log(req.params.id_persona)
       res.status(500).send(error);

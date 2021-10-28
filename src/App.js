@@ -1,7 +1,6 @@
 import React from 'react'
 import './App.css';
 import { CrudTable } from './components/CrudTable';
-import 'react-perfect-scrollbar/dist/css/styles.css';
 class FlavorForm extends React.Component {
     constructor(props) {
       super(props);
@@ -21,7 +20,6 @@ class FlavorForm extends React.Component {
   componentDidMount(){
 
       fetch('http://localhost:3001')
-            .then(console.log("conecte"))
             .then(response => {
               return response.json();
             })

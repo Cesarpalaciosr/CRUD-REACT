@@ -34,9 +34,9 @@ const getPerson = () => {
 
 const deletePerson = () => {
     return new Promise(function(resolve, reject) {
-      //const id_persona  = body
-      const id = parseInt(request.params.id)
-      //const id = parseInt(request.params.id_persona)
+     //const id_persona  = body
+      const id = parseInt(req.params.id_persona)
+      //const id = parseInt(body)
       console.log(id)
       pool.query('DELETE FROM persona WHERE id_persona = $1', [id], (error, results) => {
         if (error) {

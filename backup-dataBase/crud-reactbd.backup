@@ -1,0 +1,126 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
+
+-- Started on 2021-10-28 00:32:19
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2988 (class 1262 OID 16404)
+-- Name: CRUD-REACT; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "CRUD-REACT" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'Spanish_Mexico.1252';
+
+
+ALTER DATABASE "CRUD-REACT" OWNER TO postgres;
+
+\connect -reuse-previous=on "dbname='CRUD-REACT'"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 201 (class 1259 OID 16407)
+-- Name: persona; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.persona (
+    id_persona integer NOT NULL,
+    no_persona character varying(40) NOT NULL,
+    ap_persona character varying(40) NOT NULL,
+    ci_persona bigint NOT NULL,
+    sx_persona character varying(20) NOT NULL
+);
+
+
+ALTER TABLE public.persona OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 16405)
+-- Name: persona_id_persona_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.persona_id_persona_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.persona_id_persona_seq OWNER TO postgres;
+
+--
+-- TOC entry 2989 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: persona_id_persona_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.persona_id_persona_seq OWNED BY public.persona.id_persona;
+
+
+--
+-- TOC entry 2850 (class 2604 OID 16410)
+-- Name: persona id_persona; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.persona ALTER COLUMN id_persona SET DEFAULT nextval('public.persona_id_persona_seq'::regclass);
+
+
+--
+-- TOC entry 2982 (class 0 OID 16407)
+-- Dependencies: 201
+-- Data for Name: persona; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.persona (id_persona, no_persona, ap_persona, ci_persona, sx_persona) VALUES (1, 'cacaca', 'Palacios', 342432, 'Hombre');
+INSERT INTO public.persona (id_persona, no_persona, ap_persona, ci_persona, sx_persona) VALUES (3, 'adadadad', 'aasdada', 12312321, 'Mujer');
+INSERT INTO public.persona (id_persona, no_persona, ap_persona, ci_persona, sx_persona) VALUES (5, 'adsada', 'aasdada', 32312, 'Mujer');
+INSERT INTO public.persona (id_persona, no_persona, ap_persona, ci_persona, sx_persona) VALUES (6, 'adsada', 'aasdada', 32312, 'Mujer');
+INSERT INTO public.persona (id_persona, no_persona, ap_persona, ci_persona, sx_persona) VALUES (7, 'cesar', 'Palacios', 2312321, 'Hombre');
+INSERT INTO public.persona (id_persona, no_persona, ap_persona, ci_persona, sx_persona) VALUES (8, 'Maria', 'Bracho', 2321313, 'Mujer');
+INSERT INTO public.persona (id_persona, no_persona, ap_persona, ci_persona, sx_persona) VALUES (9, 'Lucrecia', 'Aponte', 1231312, 'Mujer');
+
+
+--
+-- TOC entry 2990 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: persona_id_persona_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.persona_id_persona_seq', 9, true);
+
+
+-- Completed on 2021-10-28 00:32:20
+
+--
+-- PostgreSQL database dump complete
+--
+

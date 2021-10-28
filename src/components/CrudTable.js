@@ -1,18 +1,27 @@
 import React from "react";
 import { CrudTableRow } from "./CrudTableRow";
+//import axios from "axios";
 
 export const CrudTable = ({ person }) => {
   function del() {
-    let id_persona = prompt("Enter person id");
-    fetch(`http://localhost:3001/persona/${id_persona}`, {
-      method: "DELETE",
+    var id_persona = prompt("Enter person id");
+    /*axios.delete(`http://localhost:3001/persona/${id_persona}`,{
+        headers: {
+            "Content-Type": "application/json",
+        },
+        data: {
+         id_persona
+        }
+      })*/
+   
+   fetch(`http://localhost:3001/persona/${id_persona}`, {
+      method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id_persona }),
     })
       .then((response) => {
-        return response.json();
+        return response.text();
       })
       .then((data) => {
         alert(data);
