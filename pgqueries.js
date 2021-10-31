@@ -32,14 +32,15 @@ const getPerson = () => {
 
 
 
-const deletePerson = () => {
+const deletePerson = (id) => {
     return new Promise(function(resolve, reject) {
      //const id_persona  = body
-      const id = parseInt(req.params.id_persona)
+      
       //const id = parseInt(body)
       console.log(id)
       pool.query('DELETE FROM persona WHERE id_persona = $1', [id], (error, results) => {
         if (error) {
+          console.log(error)
           reject(error)
         }
         resolve(`Person deleted with ID: ${id}`)

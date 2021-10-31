@@ -5,25 +5,16 @@ import { CrudTableRow } from "./CrudTableRow";
 export const CrudTable = ({ person }) => {
   function del() {
     var id_persona = prompt("Enter person id");
-    /*axios.delete(`http://localhost:3001/persona/${id_persona}`,{
-        headers: {
-            "Content-Type": "application/json",
-        },
-        data: {
-         id_persona
-        }
-      })*/
-   
-   fetch(`http://localhost:3001/persona/${id_persona}`, {
+    fetch(`http://localhost:3001/persona/${id_persona}`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
-        return response.text();
+    .then((response) => {
+        return response.json();
       })
-      .then((data) => {
+    .then((data) => {
         alert(data);
       });
   }
